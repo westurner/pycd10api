@@ -1,3 +1,5 @@
 syntax:glob
 data/ftp.cdc.gov
 data/icd10xml
+*.egg-info
+*.pyc
