@@ -10,7 +10,7 @@ with open(os.path.join(here, 'README.rst')) as f:
 
 
 setup(name='icd10api',
-    version=0.1,
+    version=0.1.1,
     description='icd10api',
     long_description=README,
     classifiers=[
