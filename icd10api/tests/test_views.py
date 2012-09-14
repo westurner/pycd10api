@@ -9,3 +9,14 @@ class TestICD10piApp(unittest.TestCase):
         app = TestApp(main({}))
         app.get('/', status=200)
 
+    def test_icd10chapter(self):
+        app = TestApp(main({}))
+        app.get('/icd10/chapter/1', status=200)
+
+    def test_icd10section(self):
+        app = TestApp(main({}))
+        app.get('/icd10/section/a00-a09', status=200)
+
+    def test_icd10diag(self):
+        app = TestApp(main({}))
+        app.get('/icd10/diag/a00', status=200)
