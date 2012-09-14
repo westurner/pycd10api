@@ -17,7 +17,8 @@ setup(name='icd10api',
         "Programming Language :: Python",
         "Framework :: Pyramid",
         "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application"
+        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+        "Intended Audience :: Healthcare Industry"
     ],
     keywords="web services",
     author='',
