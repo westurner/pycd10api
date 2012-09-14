@@ -8,8 +8,16 @@ walk_icd
 #from lxml import etree
 from lxml import objectify
 
-FILE_2013='ICD10CM_FY2013_Full_XML_Tabular.xml'
-FILE_2011='icd10cm_tabular_2011.xml'
+import os.path
+DATA_PATH=os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                '../data/icd10xml')
+FILE_2013=os.path.join(
+            DATA_PATH,
+            'ICD10CM_FY2013_Full_XML_Tabular.xml')
+FILE_2011=os.path.join(
+            DATA_PATH,
+            'icd10cm_tabular_2011.xml')
 FILE=FILE_2013
 
 #ICD10XML_2011 = objectify.parse(open(FILE_2011))
