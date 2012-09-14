@@ -15,7 +15,7 @@ setup(name='icd10api',
     long_description=README,
     classifiers=[
         "Programming Language :: Python",
-        "Framework :: Pylons",
+        "Framework :: Pyramid",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application"
     ],
@@ -26,10 +26,12 @@ setup(name='icd10api',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=['cornice', 'PasteScript'],
+    install_requires=['cornice', 'PasteScript', 'lxml'],
     entry_points = """\
     [paste.app_factory]
     main = icd10api:main
+    [console_scripts]
+    icd10 = icd10api.icd10:main
     """,
     paster_plugins=['pyramid'],
 )
