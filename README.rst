@@ -24,7 +24,7 @@ ICD10 2013 Tabular XML
 - http://www.cdc.gov/nchs/icd/icd10cm.htm
 - ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Publications/ICD10CM/2013/
 
-Should also work with the 2011 edition.
+icd10api may also work with the 2011 edition.
 
 Installation
 --------------
@@ -36,16 +36,14 @@ Install icd10api and dependencies::
 
 Download ICD10 XML files::
 
-    cd icd10api/data
-    ./get_icd10.sh
+    cd icd10api/data && ./get_icd10.sh && cd ..
 
 Serve::
 
-    cd ../icd10api
     pserve ./icd10api.ini
 
 
 References
 ----------
 - https://en.wikipedia.org/wiki/ICD-10
-
+- https://www.ietf.org/rfc/rfc2119.txt
