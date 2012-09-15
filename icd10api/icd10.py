@@ -134,17 +134,58 @@ class Test_walk_icd(unittest.TestCase):
         for c in CODES:
             print( get_diag(c) )
 
-    def test_lookup_codes(self):
-        import pickle
-        codes = pickle.load(file('../../../data/codes.pickle'))
-        for c in codes:
-            print( lookup(c) )
+    #def test_lookup_codes(self):
+    #    import pickle
+    #    codes = pickle.load(file('../../../data/codes.pickle'))
+    #    for c in codes:
+    #        print( lookup(c) )
+
+import sys
+class Test_main(unittest.TestCase):
+    def setUp(self):
+        sys.args = ['./icd10.py']
+
+    def test_chapter(self):
+        sys.args.extend(['--chapter', 1])
+        main()
+
+    def test_section(self):
+        sys.args.extend(['--section', 'A00-A09'])
+        main()
+
+    def test_diag(self):
+        sys.args.extend(['--diag', 'B96.81'])
+        main()
+
+    def test_search(self):
+        sys.args.extend(['--search', 'pylori'])
+        main()
+
+    def test_lookup(self):
+        sys.args.append('B96.81')
+        main()
 
 def main():
     import optparse
     import logging
 
     prs = optparse.OptionParser(usage="./%prog : args")
+
+    # default: lookup(a) for a in args
+
+    prs.add_option('-s', '--search',
+                    dest='search',
+                    help='Search diagnoses for a given term')
+
+    prs.add_option('--chapter',
+                    dest='chapter',
+                    help='Lookup a chapter')
+    prs.add_option('--section',
+                    dest='section',
+                    help='Lookup a section')
+    prs.add_option('--diag',
+                    dest='diag',
+                    help='Lookup a diag')
 
     prs.add_option('-v', '--verbose',
                     dest='verbose',
@@ -169,9 +210,21 @@ def main():
         sys.argv = [sys.argv[0]] + args
         import unittest
         exit(unittest.main())
-
-    import json
-    print( json.dumps(get_section('A00-A09'),indent=2) )
+    elif opts.search:
+        for s in search(opts.search):
+            print( s )
+    elif opts.chapter:
+        for c in get_chapter(opts.chapter):
+            print( c )
+    elif opts.section:
+        for s in get_section(opts.section):
+            print( s )
+    elif opts.diag:
+        for d in get_diag(opts.diag):
+            print( d )
+    else:
+        for c in args:
+            print( lookup(c) )
 
 if __name__ == "__main__":
     main()
