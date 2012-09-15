@@ -1,16 +1,15 @@
-""" icd10api resources
+""" icd10api resource and index views
 """
-from cornice import Service
-from cornice.resource import resource, view
+from pyramid.view import view_config
+from pyramid.response import Response
 from pyramid.httpexceptions import HTTPNotFound, HTTPTemporaryRedirect
+from cornice.resource import resource, view
 
-hello = Service(name='hello', path='/', description="Simplest app")
+@view_config(route_name="index")
+def index(request):
+    """Return the index page"""
+    return Response("<html><head><title>ICD10API Index</title></head></html>")
 
-
-@hello.get()
-def get_info(request):
-    """Returns Hello in JSON."""
-    return {'Hello': 'World'}
 
 import icd10
 
