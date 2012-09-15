@@ -79,16 +79,25 @@ def node_to_dict(node, node_type='diag'):
 
     return _node
 
+def get_chapters():
+    return [(unicode(c.name), unicode(c.desc)) for c in
+        ICD10XML.xpath('//chapter')]
 def get_chapter(code='1'):
     return \
         [node_to_dict(n, 'chapter') for n in
                 ICD10XML.xpath("//chapter[name='%s']""" % str(code).upper() )]
 
+def get_sections():
+    return [(s.get('id'),s.text.strip())
+            for s in ICD10XML.xpath('//sectionIndex/sectionRef')]
 def get_section(code='A00'):
     return \
         [node_to_dict(n, 'section') for n in
                 ICD10XML.xpath("//section[@id='%s']""" % code.upper() )]
 
+def get_diags():
+    return [(unicode(d.name), unicode(d.desc)) for d in
+                ICD10XML.xpath('//diag')]
 def get_diag(code='A00'):
     """
     walk icd path

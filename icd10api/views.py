@@ -1,6 +1,7 @@
-""" Cornice services.
+""" icd10api resources
 """
 from cornice import Service
+from cornice.resource import resource, view
 
 
 hello = Service(name='hello', path='/', description="Simplest app")
@@ -11,31 +12,57 @@ def get_info(request):
     """Returns Hello in JSON."""
     return {'Hello': 'World'}
 
-from icd10 import get_chapter, get_section, get_diag
+import icd10
 
-icd10chapter = Service( name='icd10chapter',
-                        path='icd10/chapter/{id}',
-                        description="Get an ICD10 chapter")
-@icd10chapter.get()
-def get_icd10chapter(request):
-    code = request.matchdict.get("id").upper()
-    return get_chapter(code)
+@resource(collection_path='/api/chapters', path='/api/chapters/{id}')
+class Chapter(object):
+    def __init__(self, request):
+        self.request = request
 
+    @view(renderer='json')
+    def collection_get(self):
+        return {'chapters': icd10.get_chapters() } # TODO
 
-icd10section = Service( name='icd10section',
-                        path='icd10/section/{id}',
-                        description="Get an ICD10 section")
-@icd10section.get()
-def get_icd10section(request):
-    code = request.matchdict.get("id").upper()
-    return get_section(code)
+    @view(renderer='json')
+    def get(self):
+        code = self.request.matchdict.get("id").upper()
+        return icd10.get_chapter(code)
 
 
-icd10diag = Service(    name='icd10diag',
-                        path='icd10/diag/{id}',
-                        description="Get an ICD10 diag")
-@icd10diag.get()
-def get_icd10diag(request):
-    code = request.matchdict.get("id").upper()
-    return get_diag(code)
+@resource(collection_path='/api/sections', path='/api/sections/{id}')
+class Section(object):
+    def __init__(self, request):
+        self.request = request
+
+    @view(renderer='json')
+    def collection_get(self):
+        return {'sections': icd10.get_sections() } # TODO
+
+    def collection_post(self):
+        # TODO: redirect to self.get
+        return None
+
+    @view(renderer='json')
+    def get(self):
+        code = self.request.matchdict.get("id").upper()
+        return icd10.get_section(code)
+
+
+@resource(collection_path='/api/diags', path='/api/diags/{id}')
+class Diag(object):
+    def __init__(self, request):
+        self.request = request
+
+    @view(renderer='json')
+    def collection_get(self):
+        return {'diags': icd10.get_diags() } # TODO: memoize?
+
+    def collection_post(self):
+        #TODO: redirect to self.get
+        return None
+
+    @view(renderer='json')
+    def get(self):
+        code = self.request.matchdict.get("id").upper()
+        return icd10.get_diag(code)
 
