@@ -1,5 +1,5 @@
 syntax:glob
-data/ftp.cdc.gov
+data/*.gov
 data/icd10xml
 *.egg-info
 *.pyc
