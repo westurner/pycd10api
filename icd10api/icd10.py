@@ -131,7 +131,9 @@ def lookup(code):
         else:
             sect = get_section(code)
             if sect:
-                ret = sect[0]['name'], diag[0]['desc']
+                ret = sect[0].get('name')
+                if diag:
+                    ret = ret, diag[0].get('desc')
             else:
                 ret = code, '??'
     return ret
