@@ -7,6 +7,7 @@ walk_icd
 
 #from lxml import etree
 from lxml import objectify
+from . import ReasonableOrderedDict
 
 import os.path
 DATA_PATH=os.path.join(
@@ -48,15 +49,6 @@ NODE_RECURSE = {
     'section': (('diag','diag'),),
     'diag': (('subdiag','diag'),)
 }
-
-from collections import OrderedDict
-import json
-class ReasonableOrderedDict(OrderedDict):
-    def __str__(self):
-        return json.dumps(self, indent=2)
-
-    def __repr__(self):
-        return str(self)
 
 def node_to_dict(node, node_type='diag'):
     _node = ReasonableOrderedDict()
