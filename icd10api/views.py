@@ -10,11 +10,10 @@ def index(request):
     '''Return the index page'''
     return Response('<html><head><title>ICD10API Index</title></head></html>')
 
+import icd.cm as icd10cm
 
-import icd10
-
-@resource(collection_path='/api/chapters', path='/api/chapters/{id}',
-         description='ICD10 Chapters')
+@resource(collection_path='/api/cm/chapters', path='/api/cm/chapters/{id}',
+         description='ICD10 CM Chapters')
 class Chapter(object):
     def __init__(self, request):
         self.request = request
@@ -23,23 +22,23 @@ class Chapter(object):
     def collection_get(self):
         if 'q' in self.request.params:
             return self.collection_post()
-        return {'chapters': icd10.get_chapters() }
+        return {'chapters': icd10cm.get_chapters() }
 
     def collection_post(self):
         return HTTPTemporaryRedirect(
-                '/api/chapters/%s' % self.request.params.get('q'))
+                '/api/cm/chapters/%s' % self.request.params.get('q'))
 
     @view(renderer='json')
     def get(self):
         code = self.request.matchdict.get('id').upper()
-        chapter = icd10.get_chapter(code)
+        chapter = icd10cm.get_chapter(code)
         if not chapter:
             raise HTTPNotFound()
         return chapter
 
 
-@resource(collection_path='/api/sections', path='/api/sections/{id}',
-            description='ICD10 Sections')
+@resource(collection_path='/api/cm/sections', path='/api/cm/sections/{id}',
+            description='ICD10 CM Sections')
 class Section(object):
     def __init__(self, request):
         self.request = request
@@ -48,23 +47,23 @@ class Section(object):
     def collection_get(self):
         if 'q' in self.request.params:
             return self.collection_post()
-        return {'sections': icd10.get_sections() }
+        return {'sections': icd10cm.get_sections() }
 
     def collection_post(self):
         return HTTPTemporaryRedirect(
-                '/api/sections/%s' % self.request.params.get('q'))
+                '/api/cm/sections/%s' % self.request.params.get('q'))
 
     @view(renderer='json')
     def get(self):
         code = self.request.matchdict.get('id').upper()
-        sections = icd10.get_section(code)
+        sections = icd10cm.get_section(code)
         if not sections:
             raise HTTPNotFound()
         return sections
 
 
-@resource(collection_path='/api/diags', path='/api/diags/{id}',
-            description='ICD10 Diags')
+@resource(collection_path='/api/cm/diags', path='/api/cm/diags/{id}',
+            description='ICD10 CM Diags')
 class Diag(object):
     def __init__(self, request):
         self.request = request
@@ -73,16 +72,16 @@ class Diag(object):
     def collection_get(self):
         if 'q' in self.request.params:
             return self.collection_post()
-        return {'diags': icd10.get_diags() } # TODO: memoize?
+        return {'diags': icd10cm.get_diags() } # TODO: memoize?
 
     def collection_post(self):
         return HTTPTemporaryRedirect(
-                '/api/diags/%s' % self.request.params.get('q'))
+                '/api/cm/diags/%s' % self.request.params.get('q'))
 
     @view(renderer='json')
     def get(self):
         code = self.request.matchdict.get('id').upper()
-        diags = icd10.get_diag(code)
+        diags = icd10cm.get_diag(code)
         if not diags:
             raise HTTPNotFound()
         return diags

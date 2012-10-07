@@ -32,7 +32,7 @@ setup(name='icd10api',
     [paste.app_factory]
     main = icd10api:main
     [console_scripts]
-    icd10 = icd10api.icd10:main
+    icd10cm = icd10api.icd.cm:main
     """,
     paster_plugins=['pyramid'],
 )

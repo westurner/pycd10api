@@ -11,7 +11,7 @@ from lxml import objectify
 import os.path
 DATA_PATH=os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                '../data/icd10xml')
+                '../../data/icd10xml')
 FILE_2013=os.path.join(
             DATA_PATH,
             'ICD10CM_FY2013_Full_XML_Tabular.xml')
