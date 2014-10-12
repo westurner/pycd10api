@@ -1,4 +1,4 @@
-ICD10 API
+pycd10api
 ==========
 An ICD10 REST API.
 
@@ -24,7 +24,7 @@ ICD10 2013 Tabular XML
 - http://www.cdc.gov/nchs/icd/icd10cm.htm
 - ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Publications/ICD10CM/2013/
 
-icd10api may also work with the 2011 edition.
+pycd10api may also work with the 2011 edition.
 
 Installation
 --------------
@@ -32,15 +32,15 @@ See ``data/get_icd10.sh``.
 
 Install icd10api and dependencies::
 
-    pip install -e https://github.com/westurner/icd10api
+    pip install -e https://github.com/westurner/pycd10api#egg=pycd10api
 
 Download ICD10 XML files::
 
-    cd icd10api/data && ./get_icd10.sh && cd ..
+    cd pycd10api/data && ./get_icd10.sh && cd ..
 
 Serve::
 
-    pserve ./icd10api.ini
+    pserve ./pycd10api.ini
 
 
 References
