@@ -8,9 +8,18 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.rst')) as f:
     README = f.read()
 
+INSTALL_REQUIRES = [
+    'pyramid',
+    'cornice',
+    'lxml'
+]
+
+TESTS_REQUIRE = [
+    'nose',
+]
 
 setup(name='pycd10api',
-      version="0.1.1",
+      version="0.2.1",
       description='pycd10api',
       long_description=README,
       classifiers=[
@@ -27,12 +36,12 @@ setup(name='pycd10api',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      install_requires=['cornice', 'PasteScript', 'lxml'],
+      install_requires=INSTALL_REQUIRES,
+      tests_require=TESTS_REQUIRE,
       entry_points="""\
         [paste.app_factory]
         main = pycd10api:main
         [console_scripts]
-        icd10cm = pycd10api.icd.cm:main
+        pycd10cm = pycd10api.icd.cm:main
         """,
-      paster_plugins=['pyramid'],
       )

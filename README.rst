@@ -4,6 +4,7 @@ An ICD10 REST API.
 
 Requirements
 -------------
+
 Cornice
 ~~~~~~~~
 - http://github.com/mozilla-services/cornice
@@ -19,24 +20,24 @@ LXML
 - http://github.com/lxml/lxml
 - http://lxml.de
 
-ICD10 2013 Tabular XML
-~~~~~~~~~~~~~~~~~~~~~~~
-- http://www.cdc.gov/nchs/icd/icd10cm.htm
-- ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Publications/ICD10CM/2013/
+ICD10 2015 CM Tabular XML
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+- https://www.cms.gov/Medicare/Coding/ICD10/2015-ICD-10-CM-and-GEMs.html
+- https://www.cms.gov/Medicare/Coding/ICD10/Downloads/2015-tables-index.zip  
 
-pycd10api may also work with the 2011 edition.
+pycd10api was originally developed and tested with ICD10 CM 2012 edition.
+
 
 Installation
 --------------
-See ``data/get_icd10.sh``.
 
-Install icd10api and dependencies::
+Install pycd10api and dependencies::
 
     pip install -e https://github.com/westurner/pycd10api#egg=pycd10api
 
 Download ICD10 XML files::
 
-    cd pycd10api/data && ./get_icd10.sh && cd ..
+    (cd pycd10api/data && ./get_icd10.sh)
 
 Serve::
 

@@ -5,25 +5,25 @@ from __future__ import print_function
 walk_icd
 """
 
+import codecs
+import os.path
+
 #from lxml import etree
 from lxml import objectify
 from . import ReasonableOrderedDict
 
-import os.path
 DATA_PATH=os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
                 '../../data/icd10xml')
-FILE_2013=os.path.join(
+
+FILE_2015 = os.path.abspath(os.path.join(
             DATA_PATH,
-            'ICD10CM_FY2013_Full_XML_Tabular.xml')
-FILE_2011=os.path.join(
-            DATA_PATH,
-            'icd10cm_tabular_2011.xml')
-FILE=FILE_2013
+            'Tabular.xml'))
 
 #ICD10XML_2011 = objectify.parse(open(FILE_2011))
-ICD10XML_2013 = objectify.parse(open(FILE))
-ICD10XML=ICD10XML_2013
+with codecs.open(FILE_2015, 'r', encoding='utf8') as f:
+    ICD10XML_2015 = objectify.parse(f)
+    ICD10XML = ICD10XML_2015
 
 NOTE_TYPES = (
     "inclusionTerm",

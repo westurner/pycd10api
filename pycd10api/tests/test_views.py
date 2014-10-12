@@ -1,7 +1,7 @@
 from webtest import TestApp
 import unittest
 
-from icd10api import main
+from pycd10api import main
 
 class TestICD10piApp(unittest.TestCase):
 
