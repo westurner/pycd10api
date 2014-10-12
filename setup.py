@@ -14,12 +14,8 @@ INSTALL_REQUIRES = [
     'lxml'
 ]
 
-TESTS_REQUIRE = [
-    'nose',
-]
-
 setup(name='pycd10api',
-      version="0.2.1",
+      version="0.2.2",
       description='pycd10api',
       long_description=README,
       classifiers=[
@@ -37,7 +33,6 @@ setup(name='pycd10api',
       include_package_data=True,
       zip_safe=False,
       install_requires=INSTALL_REQUIRES,
-      tests_require=TESTS_REQUIRE,
       entry_points="""\
         [paste.app_factory]
         main = pycd10api:main
