@@ -1,0 +1,7 @@
+include requirements.txt
+include requirements-test.txt
+include data/get_icd10.sh
+include pycd10api.ini
+include README.rst
+include Makefile
+recursive-include *
