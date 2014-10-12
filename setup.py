@@ -15,7 +15,7 @@ INSTALL_REQUIRES = [
 ]
 
 setup(name='pycd10api',
-      version="0.2.1",
+      version="0.2.2",
       description='pycd10api',
       long_description=README,
       classifiers=[
