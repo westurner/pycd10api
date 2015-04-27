@@ -7,17 +7,17 @@ Requirements
 
 Cornice
 ~~~~~~~~
-- http://github.com/mozilla-services/cornice
-- http://cornice.rtfd.org
+- https://github.com/mozilla-services/cornice
+- https://cornice.readthedocs.org/en/latest/
 
 Pyramid
 ~~~~~~~
-- http://github.com/pylons/pyramid
-- http://pyramid.rtfd.org
+- https://github.com/pylons/pyramid
+- https://pyramid.readthedocs.org/en/latest/
 
 LXML
 ~~~~
-- http://github.com/lxml/lxml
+- https://github.com/lxml/lxml
 - http://lxml.de
 
 ICD10 2015 CM Tabular XML
