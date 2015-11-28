@@ -33,7 +33,7 @@ Installation
 
 Install pycd10api and dependencies::
 
-    pip install -e https://github.com/westurner/pycd10api#egg=pycd10api
+    pip install -e git+https://github.com/westurner/pycd10api#egg=pycd10api
 
 Download ICD10 XML files::
 
